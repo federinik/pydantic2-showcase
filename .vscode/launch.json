@@ -8,7 +8,8 @@
             "name": "PokeClient",
             "type": "python",
             "request": "launch",
-            "program": "pokeclint/v1/pokeclient.py",
+            "cwd": "${workspaceFolder}/pokeclient/v1",
+            "program": "pokeclient.py",
             "console": "integratedTerminal",
             "redirectOutput": true,
             "justMyCode": true
@@ -17,7 +18,8 @@
             "name": "PokeClient v2",
             "type": "python",
             "request": "launch",
-            "program": "pokeclint/v1/pokeclient.py",
+            "cwd": "${workspaceFolder}/pokeclient/v2",
+            "program": "pokeclient.py",
             "console": "integratedTerminal",
             "redirectOutput": true,
             "justMyCode": true

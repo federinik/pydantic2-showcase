@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from typing import Annotated
+import random
+from typing import Annotated, Any
 
 from pydantic import BaseModel, Field, computed_field, model_validator
 
@@ -17,13 +18,10 @@ class Pokemon(BaseModel):
     id: int
     name: Annotated[str, Field(max_length=7)]
     types: Annotated[list[TypeWrapper], Field(min_length=1)]
-    weight: Annotated[int, Field(gt=60)]
+    weight: Annotated[float, Field(gt=60)]
 
-    # @model_validator(mode='after')
-    # def validate_types_after(self) -> 'Pokemon':
-    #     assert any(t.type.name in ('grass', 'fire', 'water') for t in self.types)
-
-    #     return self
+    def model_post_init(self, _ctxt: Any) -> None:
+        self.weight += random.randint(-5, 5)
 
     @model_validator(mode='before')
     @classmethod
@@ -31,6 +29,12 @@ class Pokemon(BaseModel):
         assert data['types'][0]['type']['name'] in ('grass', 'fire', 'water')
 
         return data
+
+    # @model_validator(mode='after')
+    # def validate_types_after(self) -> 'Pokemon':
+    #     assert any(t.type.name in ('grass', 'fire', 'water') for t in self.types)
+
+    #     return self
 
     @computed_field
     @property

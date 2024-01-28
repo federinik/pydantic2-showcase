@@ -1,4 +1,5 @@
 import csv
+import random
 
 import httpx
 
@@ -35,7 +36,7 @@ def main() -> None:
                 'id': json['id'],
                 'name': json['name'],
                 'main_type': json['types'][0]['type']['name'],
-                'weight': json['weight']
+                'weight': json['weight'] + random.randint(-5, 5)
             }
 
             writer.writerow(pokemon)
