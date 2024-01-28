@@ -9,11 +9,12 @@ BASE_URL = 'https://pokeapi.co/api/v2'
 
 
 def main() -> None:
-    with open('pokemons.csv', mode='+wt') as csvfile:
+    with open('pokemons.csv', '+wt', newline='') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=['id', 'name', 'main_type', 'weight'], extrasaction='ignore')
+        writer.writeheader()
 
         for i in range(1, 152):
-            print('Get info for pokemon %d' % i)
+            print(f'Get info for pokemon {i}')
 
             res = httpx.get(f'{BASE_URL}/pokemon/{i}')
             json = res.json()
