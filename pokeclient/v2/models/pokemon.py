@@ -18,7 +18,7 @@ class Pokemon(BaseModel):
     id: int
     name: Annotated[str, Field(max_length=7)]
     types: Annotated[list[TypeWrapper], Field(min_length=1)]
-    weight: Annotated[float, Field(gt=60)]
+    weight: Annotated[int, Field(gt=60)]
 
     def model_post_init(self, _ctxt: Any) -> None:
         self.weight += random.randint(-5, 5)
