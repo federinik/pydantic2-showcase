@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "pyd2"
+version = "0.1.0"
+description = ""
+authors = ["Federico Tomasi <federico.tomasi@thelevelgroup.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pydantic = "2"
+httpx = "^0.26.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
