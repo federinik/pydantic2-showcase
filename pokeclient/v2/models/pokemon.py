@@ -17,7 +17,7 @@ class TypeWrapper(BaseModel):
 class Pokemon(BaseModel):
     id: int
     name: Annotated[str, Field(max_length=7)]
-    types: Annotated[list[TypeWrapper], Field(min_length=1)]
+    type_wrappers: Annotated[list[TypeWrapper], Field(alias='types', min_length=1)]
     weight: Annotated[int, Field(gt=60)]
 
     def model_post_init(self, _ctxt: Any) -> None:
@@ -39,4 +39,4 @@ class Pokemon(BaseModel):
     @computed_field
     @property
     def main_type(self) -> str:
-        return self.types[0].type.name
+        return self.type_wrappers[0].type.name
